@@ -13,6 +13,10 @@ using Eigen::VectorXd;
 class UKF {
 public:
 
+  long long previous_timestamp_;
+  int stepid_;
+  double NIS_thr_;
+  int NIS_more_than_thr_;
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
 
@@ -55,6 +59,9 @@ public:
   ///* Radar measurement noise standard deviation radius change in m/s
   double std_radrd_ ;
 
+  MatrixXd Q_; // process noise covariance term
+  MatrixXd R_laser_; // lidar measurement noise covariance term;
+  MatrixXd R_radar_; // radar measurement noise covariance term;
   ///* Weights of sigma points
   VectorXd weights_;
 
